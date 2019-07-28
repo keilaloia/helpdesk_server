@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -54,10 +55,11 @@ namespace helpdeskAPI.Controllers
 
         //update database at id
         [HttpPut ("{id}")]
-        public async Task<IActionResult> PutData(ulong id, mData data)
+        public async Task<IActionResult> PutData(ulong id, mData data)//recheck code to see why it times out
         {
             if(id != data.Id)
             {
+                
                 return BadRequest();
             }
 
