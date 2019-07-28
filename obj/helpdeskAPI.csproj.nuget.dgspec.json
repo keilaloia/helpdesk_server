@@ -1,0 +1,69 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/helpdeskAPI.csproj": {}
+  },
+  "projects": {
+    "/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/helpdeskAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/helpdeskAPI.csproj",
+        "projectName": "helpdeskAPI",
+        "projectPath": "/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/helpdeskAPI.csproj",
+        "packagesPath": "/Users/keilaloia/.nuget/packages/",
+        "outputPath": "/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/keilaloia/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.AspNetCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.Razor.Design": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

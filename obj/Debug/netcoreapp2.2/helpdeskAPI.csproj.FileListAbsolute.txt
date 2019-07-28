@@ -1,0 +1,14 @@
+/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/bin/Debug/netcoreapp2.2/helpdeskAPI.deps.json
+/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/bin/Debug/netcoreapp2.2/helpdeskAPI.runtimeconfig.json
+/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/bin/Debug/netcoreapp2.2/helpdeskAPI.runtimeconfig.dev.json
+/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/bin/Debug/netcoreapp2.2/helpdeskAPI.dll
+/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/bin/Debug/netcoreapp2.2/helpdeskAPI.pdb
+/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/obj/Debug/netcoreapp2.2/helpdeskAPI.csprojAssemblyReference.cache
+/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/obj/Debug/netcoreapp2.2/helpdeskAPI.csproj.CoreCompileInputs.cache
+/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/obj/Debug/netcoreapp2.2/helpdeskAPI.RazorAssemblyInfo.cache
+/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/obj/Debug/netcoreapp2.2/helpdeskAPI.RazorAssemblyInfo.cs
+/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/obj/Debug/netcoreapp2.2/helpdeskAPI.AssemblyInfoInputs.cache
+/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/obj/Debug/netcoreapp2.2/helpdeskAPI.AssemblyInfo.cs
+/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/obj/Debug/netcoreapp2.2/helpdeskAPI.RazorTargetAssemblyInfo.cache
+/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/obj/Debug/netcoreapp2.2/helpdeskAPI.dll
+/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/obj/Debug/netcoreapp2.2/helpdeskAPI.pdb
