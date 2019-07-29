@@ -28,8 +28,8 @@ namespace helpdeskAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(opt =>
-            opt.UseInMemoryDatabase("mDatas"));
+            // services.AddDbContext<DataContext>(opt =>
+            // opt.UseInMemoryDatabase("mDatas"));
             
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
@@ -38,9 +38,12 @@ namespace helpdeskAPI
                     .AllowAnyHeader();
             }));
 
-
-
-
+            var connection = "server=localhost;port=3306;database=helpdesk_db;user=root;password=password";
+            services.AddDbContext<DataContext>(options =>
+            options.UseMySql(connection));
+            // services.    
+            // services.AddTransient<helpdesk_db>(_ => new helpdesk_db(Configuration["ConnectionStrings:DefaultConnection"]));    
+            // services.Add(new ServiceDescriptor(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             
         }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using helpdeskAPI.Models;
-
+using Dapper;
 namespace helpdeskAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -13,79 +13,65 @@ namespace helpdeskAPI.Controllers
     public class DataController : ControllerBase
     {
         private readonly DataContext _context;
-
+    //    string connStr = "server=localhost;port=3306;database=helpdesk_db;user=root;password=password";
         public DataController(DataContext context)
         {
             _context = context;
-            if(_context.mDatas.Count() == 0)
-            {
-                _context.mDatas.Add(new mData {Name = "testname"});  
-                _context.SaveChanges();
-            }
+            // if(_context.mDatas.Count() == 0)
+            // {
+            //     _context.mDatas.Add(new mData {Name = "testname"});  
+            //     _context.SaveChanges();
+            // }
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<mData>>> GetDatamulti()
         {
-            return await _context.mDatas.ToListAsync();
+            
+            var connection = _context.Database.GetDbConnection();
+            var data = await connection.QueryAsync<mData>("SELECT * FROM user");
+            return data.ToList();
+            // return await _context.mDatas.ToListAsync();
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<mData>> GetDatabyID(ulong id)
+        [HttpGet("{_id}")]
+        public async Task<ActionResult<IEnumerable<mData>>> GetDatabyID(ulong _id)
         {
-            var result = await _context.mDatas.FindAsync(id);
-
-            if(result == null)
-            {
-                return NotFound();
-            }
-
-            return result;
+            var connection = _context.Database.GetDbConnection();
+            var data = await connection.QueryAsync<mData>("SELECT * FROM user WHERE id = @myid;", new {myid = _id});
+            return data.ToList();
         }
 
-        //add to database
+        // add to database
         [HttpPost]
         public async Task<ActionResult<mData>> PostData(mData data)
         {
-            _context.mDatas.Add(data);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetDatabyID), new {id = data.Id}, data);
+            var connection = _context.Database.GetDbConnection();
+            string sqlInsert = "INSERT INTO user (userName, userPass) Values (@uName, @uPass );";
+	        var affectedRows = await connection.ExecuteAsync(sqlInsert,  new {uName = data.userName , uPass = data.userPass});
+            return data;
+            // return CreatedAtAction(nameof(GetDatabyID), new {id = data.id}, data);
         }
 
         //update database at id
-        [HttpPut ("{id}")]
-        public async Task<IActionResult> PutData(ulong id, mData data)//recheck code to see why it times out
+        [HttpPut ("{_id}")]
+        public async Task<ActionResult<IEnumerable<mData>>> PutData(ulong _id, mData data)
         {
-            if(id != data.Id)
-            {
-                
-                return BadRequest();
-            }
-
-            _context.Entry(data).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            var connection = _context.Database.GetDbConnection();
+            string sqlUpdate = "UPDATE user SET userName = @uName, userPass = @uPass WHERE id = @myid;";
+	        var affectedRows = await connection.QueryAsync<mData>(sqlUpdate,  new {uName = data.userName , uPass = data.userPass, myid = _id });
+            return affectedRows.ToList();
         }
 
         //delete database item by id
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDatabyID(ulong id)
+        [HttpDelete("{_id}")]
+        public async Task<ActionResult<IEnumerable<mData>>> DeleteDatabyID(ulong _id)
         {
-            var dResult = await _context.mDatas.FindAsync(id);
-
-            if(dResult == null)
-            {
-                NotFound();
-            }
-
-            _context.mDatas.Remove(dResult);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-
+           var connection = _context.Database.GetDbConnection();
+            string sqlInsert = "DELETE FROM user WHERE id = @myid;";
+	        var affectedRows = await connection.QueryAsync<mData>(sqlInsert,  new {myid = _id});
+            return affectedRows.ToList();
         }
 
 
