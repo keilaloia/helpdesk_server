@@ -6,7 +6,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Prerequisits
 
 please run below commands
-this application expects you to hace dotnet and npm tools installed for command line
+
+this application expects you to hace dotnet which can be found[https://dotnet.microsoft.com/download]
+additionally npm tools installed for command line which can be found
+[https://nodejs.org/en/]
 
 ### `npm start`
 
