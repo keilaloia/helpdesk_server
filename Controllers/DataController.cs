@@ -15,36 +15,16 @@ namespace helpdeskAPI.Controllers
     public class DataController : ControllerBase
     {
         private readonly DataContext _context;
-    //    string connStr = "server=localhost;port=3306;database=helpdesk_db;user=root;password=password";
         public DataController(DataContext context)
         {
             _context = context;
         
         }
 
-        // [HttpGet]
-        // public async Task<ActionResult<IEnumerable<mData>>> GetDatamulti()
-        // {
-            
-        //     var connection = _context.Database.GetDbConnection();
-        //     var data = await connection.QueryAsync<mData>("SELECT * FROM loginUser");
-        //     return data.ToList();
-        //     // return await _context.mDatas.ToListAsync();
-        // }
-
-        // [HttpGet("{_id}")]
-        // public async Task<ActionResult<IEnumerable<mData>>> GetDatabyID(ulong _id)
-        // {
-        //     var connection = _context.Database.GetDbConnection();
-
-        //     var data = await connection.QueryAsync<mData>("SELECT * FROM user WHERE id = @myid;", new {myid = _id});
-        //     return data.ToList();
-        // }
-
         [HttpPost]//login user
         public async Task<ActionResult<IEnumerable<mData>>> PostData(mData data)
         {
-               var connection = _context.Database.GetDbConnection();
+             var connection = _context.Database.GetDbConnection();
             byte[] salt = new byte[128 / 8];
             string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
             password:  data.userPass,
@@ -64,7 +44,7 @@ namespace helpdeskAPI.Controllers
                 return checkRole.ToList();
 
             }
-            else
+            else//create user and configure database around their information
             {
                 string sqlInsert = "INSERT INTO loginUser (userName, userPass) Values (@uName, @uPass );";
                 sqlInsert += "INSERT INTO userRole (adminRole, helpDesk, userCred) Values (@aRole, @hDesk, @uCred);";
@@ -83,7 +63,7 @@ namespace helpdeskAPI.Controllers
         }
         [HttpPost ("{ticket}")]
         public async
-        Task<ActionResult<ticket>> PostTicket(ticket data)
+        Task<ActionResult<ticket>> PostTicket(ticket data)//simple post request to ticket field
         {
                var connection = _context.Database.GetDbConnection();
               string sqlInsert = "INSERT INTO ticket (content, TT, userID) Values (@_content,@TT, @currentuser);";
@@ -93,14 +73,14 @@ namespace helpdeskAPI.Controllers
         }
   
         [HttpGet ("ticket/{id}")]
-        public async Task<ActionResult<IEnumerable<ticket>>> getTicket(ulong id)
+        public async Task<ActionResult<IEnumerable<ticket>>> getTicket(ulong id)//grab all tickets for specific user
         {
              var connection = _context.Database.GetDbConnection();
             var graball = await connection.QueryAsync<ticket>("SELECT * FROM ticket WHERE userID = @currentuser", new{currentuser = id});
             return graball.ToList();
         }
 
-        //update database at id
+        //update id user ticket
         [HttpPut ("ticket/{id}")]
         public async Task<ActionResult<IEnumerable<ticket>>> PutTicket(ulong _id, ticket data)
         {
@@ -113,7 +93,7 @@ namespace helpdeskAPI.Controllers
 
         //delete database item by id
 
-        [HttpDelete("{_id}")]
+        [HttpDelete("{_id}")]//delete request was meant to be restructured for admin user
         public async Task<ActionResult<IEnumerable<mData>>> DeleteDatabyID(ulong _id)
         {
            var connection = _context.Database.GetDbConnection();
