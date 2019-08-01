@@ -92,13 +92,15 @@ namespace helpdeskAPI.Controllers
         }
 
         //delete database item by id
-
-        [HttpDelete("{_id}")]//delete request was meant to be restructured for admin user
-        public async Task<ActionResult<IEnumerable<mData>>> DeleteDatabyID(ulong _id)
+         /* create get all request for admin and create
+         a put method similar to ticket{id} above but resturcture it for admin if not you might be able to use the same exact put data for admin account
+          */
+        [HttpDelete("ticket/{id}")]//delete request was meant to be restructured for admin user
+        public async Task<ActionResult<IEnumerable<ticket>>> DeleteDatabyID(ulong id)
         {
            var connection = _context.Database.GetDbConnection();
             string sqlInsert = "DELETE FROM user WHERE id = @myid;";
-	        var affectedRows = await connection.QueryAsync<mData>(sqlInsert,  new {myid = _id});
+	        var affectedRows = await connection.QueryAsync<ticket>(sqlInsert,  new {myid = id});
             return affectedRows.ToList();
         }
 
