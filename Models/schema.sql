@@ -20,7 +20,7 @@ CREATE TABLE userRole
     PRIMARY KEY (id)
     
 );
--- combine userole and login user to have all the data in one easy table
+
 CREATE TABLE user
 (
     id INT NOT NULL AUTO_INCREMENT,
@@ -31,7 +31,7 @@ CREATE TABLE user
     FOREIGN KEY (roleID) REFERENCES userRole(id)
 
 );
---create ticket table with reference to user who created them
+
 CREATE TABLE ticket
 (
     id INT NOT NULL AUTO_INCREMENT,
