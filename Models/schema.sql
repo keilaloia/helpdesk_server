@@ -80,3 +80,9 @@ INSERT INTO user(loginID, roleID)
 VALUEs(LAST_INSERT_ID(), LAST_INSERT_ID());
 INSERT INTO history (userID) VALUES(LAST_INSERT_ID());
 
+
+ SELECT userRole.* 
+FROM user RIGHT JOIN userRole 
+ON user.roleID = userRole.id 
+WHERE user.id = 2 AND userRole.helpDesk = TRUE
+
