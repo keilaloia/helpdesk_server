@@ -68,7 +68,7 @@ namespace helpdeskAPI.Controllers
         {
             var connection = _context.Database.GetDbConnection();
 
-            // checkAuth(data.id);
+            //simple connection query to check if user has the permission to do the current task
             if (connection.Query<bool>("SELECT userRole.* FROM user RIGHT JOIN userRole ON user.roleID = userRole.id WHERE user.id = @_id AND userRole.helpDesk = TRUE OR userRole.adminRole = TRUE;", new { _id = data.id }).FirstOrDefault())
             {
                 string sqlInsert = "INSERT INTO ticket (content, TT, userID) Values (@_content,@TT, @currentuser);";
@@ -91,6 +91,7 @@ namespace helpdeskAPI.Controllers
         public async Task<ActionResult<IEnumerable<ticket>>> getAllTicket(ulong id)//grab all tickets for specific user
         {
             var connection = _context.Database.GetDbConnection();
+            //simple connection query to check if user has the permission to do the current task
             if (connection.Query<bool>("SELECT userRole.* FROM user RIGHT JOIN userRole ON user.roleID = userRole.id WHERE user.id = @_id AND userRole.adminRole = TRUE;", new { _id = id }).FirstOrDefault())
             {
                 var graball = await connection.QueryAsync<ticket>("SELECT * FROM ticket");
@@ -104,6 +105,7 @@ namespace helpdeskAPI.Controllers
         public async Task<ActionResult<IEnumerable<ticket>>> getTicket(ulong id)//grab all tickets for specific user
         {
             var connection = _context.Database.GetDbConnection();
+            //simple connection query to check if user has the permission to do the current task
             if (connection.Query<bool>("SELECT userRole.* FROM user RIGHT JOIN userRole ON user.roleID = userRole.id WHERE user.id = @_id AND userRole.helpDesk = TRUE OR userRole.adminRole = TRUE;", new { _id = id }).FirstOrDefault())
             {
                 var graball = await connection.QueryAsync<ticket>("SELECT * FROM ticket WHERE userID = @currentuser", new { currentuser = id });
@@ -120,7 +122,7 @@ namespace helpdeskAPI.Controllers
         {
 
             var connection = _context.Database.GetDbConnection();
-
+            //simple connection query to check if user has the permission to do the current task
             if (connection.Query<bool>("SELECT userRole.* FROM user RIGHT JOIN userRole ON user.roleID = userRole.id WHERE user.id = @_id AND userRole.helpDesk = TRUE OR userRole.adminRole = TRUE;", new { _id = _id }).FirstOrDefault())
             {
                 string sqlUpdate = "UPDATE ticket SET content = @newcontent WHERE id = @myid;";
@@ -133,22 +135,20 @@ namespace helpdeskAPI.Controllers
         }
 
         //delete database item by id
-        /* create get all request for admin and create
-        a put method similar to ticket{id} above but resturcture it for admin, if not you might be able to use the same exact put data for admin account
-         */
         [HttpDelete("ticket/delete/{id}")]//delete request was meant to be restructured for admin user
         public async Task<ActionResult<IEnumerable<ticket>>> DeleteDatabyID(ulong id, ticket data)
         {
 
             var connection = _context.Database.GetDbConnection();
-                        if (connection.Query<bool>("SELECT userRole.* FROM user RIGHT JOIN userRole ON user.roleID = userRole.id WHERE user.id = @_id AND userRole.helpDesk = TRUE OR userRole.adminRole = TRUE;", new { _id = id }).FirstOrDefault())
-                        {
-            string sqlInsert = "DELETE FROM ticket WHERE id = @myid;";
-            var affectedRows = await connection.QueryAsync<ticket>(sqlInsert, new { myid = data.id });
-            return affectedRows.ToList();
-                        }
-                        return null;
-                            
+            //simple connection query to check if user has the permission to do the current task
+            if (connection.Query<bool>("SELECT userRole.* FROM user RIGHT JOIN userRole ON user.roleID = userRole.id WHERE user.id = @_id AND userRole.helpDesk = TRUE OR userRole.adminRole = TRUE;", new { _id = id }).FirstOrDefault())
+            {
+                string sqlInsert = "DELETE FROM ticket WHERE id = @myid;";
+                var affectedRows = await connection.QueryAsync<ticket>(sqlInsert, new { myid = data.id });
+                return affectedRows.ToList();
+            }
+            return null;
+
         }
 
 
