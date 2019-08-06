@@ -25,6 +25,9 @@ please connect to a secured wifi or on the webpage allow for unauthorized servic
 
 what is happening here is the https is not reading your browser or connection as secured 
 
+now if you run it should be fixed!
+-------------------------------------
+
 ## Prerequisits
 
 Please run below commands
