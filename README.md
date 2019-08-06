@@ -72,7 +72,7 @@ otherwise you will be creating a new account and populate your data from there
 
 3./helpdesk
 
-4./admin -- in development
+4./admin
 
 ### `user stories completed`
 User Story: As a User, I can log in and out of the system.
