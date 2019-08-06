@@ -2,6 +2,28 @@
 This is a quick app made as a part of a coding interview
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### screenshot
+![Alt text](readmemedia/admindashboard.png)
+![Alt text](readmemedia/loginpage.png)
+![Alt text](readmemedia/ticketcreate.png)
+![Alt text](readmemedia/ticketupdate.png)
+![Alt text](readmemedia/userlogin.png)
+
+
+### 'ERROR FIXES'
+if you recieve 500 Internal Server Error
+please navigate to [helpdesk_server/models] and attach the schema database to the the project by typing in the commands within 
+the models folder
+1. mysql -u root -p
+2. source schema.sql
+3. exit
+
+now if you run it should be fixed!
+-------------------------------------
+if you receive Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID
+please connect to a secured wifi or on the webpage allow for unauthorized services
+
+what is happening here is the https is not reading your browser or connection as secured 
 
 ## Prerequisits
 

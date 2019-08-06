@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/helpdeskAPI.csproj": {}
+    "/Users/keilaloia/Programming_projects/helpdesktest/helpdesk_server/helpdeskAPI.csproj": {}
   },
   "projects": {
-    "/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/helpdeskAPI.csproj": {
+    "/Users/keilaloia/Programming_projects/helpdesktest/helpdesk_server/helpdeskAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/helpdeskAPI.csproj",
+        "projectUniqueName": "/Users/keilaloia/Programming_projects/helpdesktest/helpdesk_server/helpdeskAPI.csproj",
         "projectName": "helpdeskAPI",
-        "projectPath": "/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/helpdeskAPI.csproj",
+        "projectPath": "/Users/keilaloia/Programming_projects/helpdesktest/helpdesk_server/helpdeskAPI.csproj",
         "packagesPath": "/Users/keilaloia/.nuget/packages/",
-        "outputPath": "/Users/keilaloia/Programming_projects/micro_helpdesk/helpdeskAPI/obj/",
+        "outputPath": "/Users/keilaloia/Programming_projects/helpdesktest/helpdesk_server/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
